@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $txt_links} -->
+<div class="abody">
+	<div class="flink">
+		<div class="title"><strong>友情链接</strong></div>
+		<div class="list">
+		<ul class="crz">
+        <!--{foreach from=$txt_links item=link}-->
+      <li><a href="{$link.url}" title="{$link.name}" target="_blank">{$link.name}</a></li>
+         <!--{/foreach}-->                                   
+
+		</ul>
+		</div>
+	</div>
+	<div class="clear line10"></div>
+</div>
+<!-- {/if} -->

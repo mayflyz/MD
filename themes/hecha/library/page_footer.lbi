@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="footer7">
+	<div class="abody">
+	<div class="kfbox7 crz">
+  <!-- {foreach from=$helps item=help_cat name=help_cat} -->  
+		<ul class="s{$smarty.foreach.help_cat.iteration}">
+			<li class="t1 im{$smarty.foreach.help_cat.iteration}">{$help_cat.cat_name}</li>
+            <!-- {foreach from=$help_cat.article item=item} -->
+			<li><a href="{$item.url}" target="_blank" rel="nofollow">{$item.short_title}</a></li>
+            <!-- {/foreach} --> 
+
+		</ul>
+  <!-- {/foreach} -->
+              
+		<ul class="s6">
+			<li class="t1 im6">联系客服</li>
+			<li>订购热线</li>
+			<li class="t2">{$service_phone}</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+
+	<div class="line15"></div>
+	<p class="link">
+   <!-- {if $navigator_list.bottom} -->
+      <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+    <a href="{$nav.url}" target="_blank">{$nav.name}</a> | 
+      <!-- {/foreach} -->
+   <!-- {/if} -->
+   
+    <a href="#">回顶部</a>
+    </p>
+	<p> 上海懋德电子科技有限公司 版权所有 并保留所有权利</p>
+</div>
+

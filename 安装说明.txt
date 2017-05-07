@@ -1,0 +1,19 @@
+安装：
+1.安装系统时要先把data/install.lock文件删除，表头名均为ecs_
+2.data/sqldata目录自带备份数据，请自行在后台[数据库管理-数据备份-恢复备份]中导入，恢复后的用户密码是admin  admin123
+
+
+补丁：
+1.修复补丁请别覆盖以下文件：
+/includes/cls_template.php
+/includes/init.php
+
+
+如果没有恢复数据，请自行将新增的字段和表导入,需在后台数据库管理->SQL查询处执行以下语句:
+
+请将ecs_改成你的网站数据库扩展名
+
+
+ALTER TABLE `ecs_goods` ADD `goods_thumb2` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `goods_thumb` ;
+
+ALTER TABLE `ecs_goods_activity` ADD `act_img` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL

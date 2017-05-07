@@ -1,0 +1,1207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+
+<link href="themes/hechaV2.5/skin/tm7/style_test/home7.css" rel="stylesheet" type="text/css" />
+<link href="themes/hecha/themes/hechaV2.5/skin/tm7/style_test/home7.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/index_url.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="themes/hecha/themes/hechaV2.5/skin/tm7/js/common.js"></script>
+<script type="text/javascript" src="themes/hecha/themes/hechaV2.5/skin/tm7/js/jquery.plus.js"></script>
+<script src="themes/hecha/themes/hechaV2.5/skin/tm5/js/lazyload.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/transport.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+{insert_scripts files='utils.js'}
+
+<!--<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$("body").find("img").not(".hd_img,.brandlist_img").lazyload({threshold : 200,effect : "fadeIn",placeholder : "http://www.hecha.cn/themes/hechaV2.5/skin/tm5/images/grey.gif",failurelimit : 10});
+});
+</script>-->
+<script  type="text/javascript">
+var _bdhm_top = 0;
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+var _bdhm_tim = new Image(1,1);
+_bdhm_tim.id = "bdhmPerimg";
+_bdhm_tim.src = _bdhmProtocol + "hm.baidu.com/_tt.gif?si=5929d4f83ef0b1fad3dd9365bf2c00b4&rnd=" + Math.round(Math.random()*2147483647);
+_bdhm_tim.onload=function(){_bdhm_top = 1;}
+</script>
+</head>
+
+<body class="hchstw1">
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/index_menu.lbi" --><!-- #EndLibraryItem -->
+
+<div class="slidebox">
+
+<!-- #BeginLibraryItem "/library/index_category_tree.lbi" --><!-- #EndLibraryItem -->
+
+<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+
+<!-- #BeginLibraryItem "/library/brands.lbi" --><!-- #EndLibraryItem -->
+
+</div>
+<div class="clear line15"></div>
+
+
+<div class="abody">
+
+    <script type="text/javascript">
+	jQuery(".newprobox").slide({titCell:".title_h5 li",mainCell:".hotprox",delayTime:0,delayTime:500,interTime:5000,autoPlay:true});
+    </script>
+
+<!-- TemplateBeginEditable name="分类下的商品" -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+
+?>
+	<div class="homepro1 st1">
+
+
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;\
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+<link href="../themes/hechaV2.5/skin/tm7/style/home7.css" rel="stylesheet" type="text/css" />
+
+<?php
+$catid=$GLOBALS['smarty']->_var['goods_cat']['id'];
+$GLOBALS['smarty']->assign('dynamic',get_assign_dynamic($catid));
+
+$sortnum=$GLOBALS['smarty']->_var['dynamic']['sort_order']+1;
+$GLOBALS['smarty']->assign('sortnum',$sortnum);
+
+$limnum=8;
+?>
+
+<div class="abody">
+	<div class="row7">
+	<div class="title_h1 {if $sortnum<=7}col{$sortnum}{else}col1{/if}">
+		<strong>{$goods_cat.name|escape:html} <span>{$sortnum}F</span></strong>
+		<em>
+<!--{foreach from=get_child_tree($catid) item=child_tree name=child_tree}-->
+  <!-- {if $smarty.foreach.child_tree.index<3}-->
+        <a href="{$child_tree.url}" target="_blank">{$child_tree.name}</a> |
+  <!--{/if}-->
+<!--{/foreach}-->
+
+        <!--<a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank">铁观音</a> | <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank">大红袍</a> | -->
+        <a href="{$goods_cat.url}" target="_blank">更多</a>
+        </em>
+		<div class="clear"></div>
+	</div>
+<?php
+   $GLOBALS['smarty']->assign('best_goods', get_cat_recommend_goods('best', $catid, $limnum));
+   $GLOBALS['smarty']->assign('ad',get_adv('首页_分类商品'.$sortnum.'F'));
+?>
+	<div class="homepro1 st1">
+
+		<div class="comx">
+{$ad.content}
+		</div>
+
+		<ul>
+
+<!--{foreach from=$best_goods item=goods name=best_goods}-->
+<!-- {if $smarty.foreach.best_goods.iteration<=7}-->
+        <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri">
+        <strong>
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.shop_price}
+                <!--{/if}-->
+         </strong><small>{$goods.market_price}</small></p></li>
+<!--{/if}-->
+<!--{/foreach}-->
+
+	  <div class="clear"></div></ul>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+<?php
+$GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($catid));
+?>
+	<div class="row8">
+		<div class="hometop">
+			<div class="title">{$goods_cat.name|escape:html}热销排行榜</div>
+			<div class="list">
+				<ul>
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration==1}-->
+                     <li>
+						<p class="nos"><strong>{$smarty.foreach.top_goods.iteration}</strong></p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=2 && $smarty.foreach.top_goods.iteration<=3}-->
+                    <li>
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.goods_name}"/></a></p>
+						<div class="txt">
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+						<p class="pri">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                <!-- {else}-->
+                {$goods.price}
+                <!--{/if}-->
+                        </p>
+						<p class="msg"><a href="{$goods.url}"><strong>{$goods.comment_count}</strong>人评论</a></p>
+						</div>
+						<div class="clear"></div>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+                <!-- {foreach from=$get_hotsell_goods item=goods name=top_goods}-->
+                     <!-- {if $smarty.foreach.top_goods.iteration>=4 && $smarty.foreach.top_goods.iteration<=6}-->
+                    <li class="lix">
+						<p class="nos">{$smarty.foreach.top_goods.iteration}</p>
+						<p class="til"><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a></p>
+					</li>
+                    <!--{/if}-->
+                <!-- {/foreach} -->
+
+
+      </ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear line15"></div>
+</div>
+
+
+
+
+
+
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+<div class="abody">
+	<div class="row7">
+<p>
+<!-- TemplateBeginEditable name="首页_名茶导购_上部广告" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+{insert name='ads' id=$ads_id num=$ads_num}
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+</p>
+	<div class="line15"></div>
+        <div class="fnav">
+		<div class="title">
+		<p><a href="#" target="_blank">查看所有商品分类</a></p>
+		</div>
+		<ul>
+        <!--{foreach from=$categories item=cat name=cat}-->
+           <!-- {if $smarty.foreach.cat.iteration<=6}-->
+			<li><em>
+			<a href="{$cat.url}" target="_blank">更多 »</a></em><strong>{$cat.name|escape:html}：</strong>
+            <!--{foreach from=$cat.cat_id item=child}-->
+               <!-- {if $smarty.foreach.cat.iteration<=8}-->
+			<a href="{$child.url}" target="_blank">{$child.name|escape:html}</a> |
+               <!--{/if}-->
+            <!--{/foreach}-->
+
+            <!--<a href="http://www.hecha.cn/maofeng_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">黄山毛峰</a>
+			 |  <a href="http://www.hecha.cn/guapian_list.html">六安瓜片</a>
+			  |  <a href="http://www.hecha.cn/houkui_list.html">太平猴魁</a>-->
+			</li>
+           <!--{/if}-->
+        <!--{/foreach}-->
+
+			<!--<li><em><a href="http://www.hecha.cn/wulong_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">更多 »</a></em><strong>乌 龙 茶：</strong><a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">铁 观 音</a> |  <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">大 红 袍</a> |  <a href="http://www.hecha.cn/shuixian_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">水　　仙</a> |  <a href="http://www.hecha.cn/rougui_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">肉　　桂</a> |  <a href="http://www.hecha.cn/qitawulong_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">其他岩茶</a></li>
+			<li><em><a href="http://www.hecha.cn/hongcha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">更多 »</a></em><strong>红　　茶：</strong><a href="http://www.hecha.cn/xiaozhong_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">正山小种</a> |  <a href="http://www.hecha.cn/qimen_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">祁门红茶</a> |  <a href="http://www.hecha.cn/dianhong_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">云南滇红</a> |  <a href="http://www.hecha.cn/rougui_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">坦洋工夫</a> |  <a href="http://www.hecha.cn/zhenghe_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">政和工夫</a> |  <a href="http://www.hecha.cn/bailin_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">白琳功夫</a> |  <a href="http://www.hecha.cn/jinjunmei_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">金骏眉</a> |  <a href="http://www.hecha.cn/qitahongcha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">其他红茶</a></li>
+			<li><em><a href="http://www.hecha.cn/baicha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">更多 »</a></em><strong>福鼎白茶：</strong><a href="http://www.hecha.cn/baihaoyinzhen_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">白毫银针</a> |  <a href="http://www.hecha.cn/baimudan_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">白 牡 丹</a> |  <a href="http://www.hecha.cn/shoumei_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">寿　　眉</a> |  <a href="http://www.hecha.cn/xinbaicha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">新工艺白茶</a></li>
+			<li><em><a href="http://www.hecha.cn/sitemap.php" target="_blank" onclick="return gourl(this.href,'?hra=81',this.target);">更多 »</a></em><strong>其他茗茶：</strong><a href="http://www.hecha.cn/puer_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">普 洱 茶</a> |  <a href="http://www.hecha.cn/molihuacha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">茉莉花茶</a> |  <a href="http://www.hecha.cn/huacaocha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">玫瑰花茶</a> |  <a href="http://www.hecha.cn/huacaocha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">大麦茶</a> |  <a href="http://www.hecha.cn/huacaocha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">菊花茶</a> |  <a href="http://www.hecha.cn/huacaocha_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">苦荞茶</a></li>
+			<li><em><a href="http://www.hecha.cn/chaju_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">更多 »</a></em><strong>精品茶具：</strong><a href="http://www.hecha.cn/gongfuchaju_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">功夫茶具</a> |  <a href="http://www.hecha.cn/dianzichaju_list.html" target="_blank">电子茶具</a> |  <a href="http://www.hecha.cn/chahuchabei_list.html" target="_blank">茶杯茶壶</a> |  <a href="http://www.hecha.cn/shipin_list.html" target="_blank" onclick="return gourl(this.href,'?hra=8',this.target);">茶 配 饰</a></li>-->
+
+		</ul>
+		<div class="clear"></div>
+	</div>
+	</div>
+	<div class="row8">
+<div class="img">
+<!-- TemplateBeginEditable name="首页_名茶导购_右侧广告" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+{insert name='ads' id=$ads_id num=$ads_num}
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+</div>
+		</div>
+	</div>
+	<div class="clear line15"></div>
+</div>
+<div class="abody">
+	<div class="line15"></div>
+		<div class="txtli_b">
+
+<!-- TemplateBeginEditable name="首页文章列表" -->
+<!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
+
+<?php
+$catid=$GLOBALS['smarty']->_var['articles_cat']['id'];
+$GLOBALS['smarty']->assign('get_class_articles', get_class_articles($catid,17));
+?>
+		<dl class="st1">
+			<div class="title_h2" style="cursor:hand"><strong><a href="{$articles_cat.url}" target="_blank">{$articles_cat.name|escape:html}</a></strong><em><a href="{$articles_cat.url}" target="_blank">更多...</a></em></div>
+<!--{foreach from=$get_class_articles item=article name=article}-->
+  <!--{if $smarty.foreach.article.index==0}-->
+			<dt><a href="{$article.url}" target="_blank" title="{$article.title}"><img src="{$article.file_url}" width="92" height="92" align="absmiddle" /></a>
+<p>
+				<strong><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></strong>
+				{$article.description|truncate:46}<a href="{$article.url}" title="{$article.title}" class="link" target="_blank">详细</a>
+
+			</p>
+			<div class="clear"></div>
+			</dt>
+  <!--{/if}-->
+<!--{/foreach}-->
+			<dd>
+<!--{foreach from=$get_class_articles item=article name=article}-->
+  <!--{if $smarty.foreach.article.index>0 && $smarty.foreach.article.index<5}-->
+  <h5><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></h5>
+  <!--{/if}-->
+  <!--{if $smarty.foreach.article.index>4}-->
+  <p><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></p>
+  <!--{/if}-->
+<!--{/foreach}-->
+
+<div class="clear"></div>
+			</dd>
+
+		</dl>
+
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_articles.lbi" -->
+
+<?php
+$catid=$GLOBALS['smarty']->_var['articles_cat']['id'];
+$GLOBALS['smarty']->assign('get_class_articles', get_class_articles($catid,17));
+?>
+		<dl class="st1">
+			<div class="title_h2" style="cursor:hand"><strong><a href="{$articles_cat.url}" target="_blank">{$articles_cat.name|escape:html}</a></strong><em><a href="{$articles_cat.url}" target="_blank">更多...</a></em></div>
+<!--{foreach from=$get_class_articles item=article name=article}-->
+  <!--{if $smarty.foreach.article.index==0}-->
+			<dt><a href="{$article.url}" target="_blank" title="{$article.title}"><img src="{$article.file_url}" width="92" height="92" align="absmiddle" /></a>
+<p>
+				<strong><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></strong>
+				{$article.description|truncate:46}<a href="{$article.url}" title="{$article.title}" class="link" target="_blank">详细</a>
+
+			</p>
+			<div class="clear"></div>
+			</dt>
+  <!--{/if}-->
+<!--{/foreach}-->
+			<dd>
+<!--{foreach from=$get_class_articles item=article name=article}-->
+  <!--{if $smarty.foreach.article.index>0 && $smarty.foreach.article.index<5}-->
+  <h5><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></h5>
+  <!--{/if}-->
+  <!--{if $smarty.foreach.article.index>4}-->
+  <p><a href="{$article.url}" title="{$article.title}" target="_blank">{$article.title}</a></p>
+  <!--{/if}-->
+<!--{/foreach}-->
+
+<div class="clear"></div>
+			</dd>
+
+		</dl>
+
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+
+
+
+<?php
+$GLOBALS['smarty']->assign('get_class_articles', get_class_articles(2,20));
+?>
+        <dl class="st2">
+			<div class="title_h2"><strong>网店信息</strong><em><a href="article.php?id=5" target="_blank">更多»</a></em></div>
+			<dd class="box1">
+
+
+<!--{foreach from=$get_class_articles item=article name=article}-->
+  <!--{if $smarty.foreach.article.index<10}-->
+<p><a rel="nofollow" href="{$article.url}" target="_blank" title="{$article.title}" >{$article.title}</a></p>
+  <!--{/if}-->
+<!--{/foreach}-->
+
+								<!--<p><a rel="nofollow" href="http://www.hecha.cn/about/hc-about.html" title="和茶网简介" target="_blank">和茶网简介</a></p>
+								<p><a rel="nofollow" href="http://www.hecha.cn/about/hc_experts.html" title="和茶网产品质量评审委员会介绍 " target="_blank">和茶网产品质量评审委员会介绍 </a></p>
+								<p><a rel="nofollow" href="http://www.hecha.cn/about/hc_experts.html" title="评审委员会成员介绍" target="_blank">评审委员会成员介绍</a></p>
+								<p><a rel="nofollow" href="http://www.hecha.cn/about/hc-about.html#a1" title="和茶网价值观" target="_blank">和茶网价值观</a></p>
+								<p><a rel="nofollow" href="http://www.hecha.cn/about/hc_supplier.html" title="和茶网原产地供货商" target="_blank">和茶网原产地供货商</a></p>
+								<p><a rel="nofollow" href="http://info.hecha.cn/9/show_27732.html" target="_blank" title="中国首家茶行业中的'国美'和茶匯落户福州" >中国首家茶行业中的"国美"和茶匯落户福州</a></p>
+				<p><a rel="nofollow" href="http://info.hecha.cn/8/show_26372.html" target="_blank" title="【媒体报道】和茶网借力世博会成为茶电子商务领跑者">【媒体报道】和茶网借力世博会成为...</a></p>
+				<p><a rel="nofollow" href="http://info.hecha.cn/8/show_25924.html" target="_blank" title="【媒体报道】和茶网参展世博会 引领中国茶叶风靡全球">【媒体报道】和茶网参展世博会 引...</a></p>-->
+
+			</dd>
+		</dl>
+		<div class="row8">
+		</div>
+		<div class="clear line15"></div>
+	</div>
+</div>
+
+<!-- #BeginLibraryItem "/library/link.lbi" --><!-- #EndLibraryItem -->
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+
+<?php
+$_CFG = load_config();
+$qq=$_CFG['qq'];
+?>
+<div class="rnavx">
+	<ul id="floarrnav">
+	    <li class="slix"><a href="javascript:void(0);" onclick="AddFavorite();" class="st1">收藏我</a></li>
+		<li class="slix"><a href="javascript:;" class="st4" id="backtotop">回顶部</a></li>
+	</ul>
+</div>
+
+
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=0&amp;pos=right&amp;uid=66616" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+</body>
+</html>
