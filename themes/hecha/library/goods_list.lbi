@@ -5,17 +5,10 @@
 			<ul>
 				<li class="img"><a href="{$goods.url}" target="_blank" title="{$goods.name}"><img src="{$goods.goods_thumb}" alt="{$goods.name}" /></a></li>
 				<li class="txt"><a href="{$goods.url}" target="_blank" title="{$goods.name}">{$goods.name}</a></li>
-				<li class="pri1"><p><a href="{$goods.url}#comment" title="查看评论"><big class="xstars"><span style="width:60px;" title="{$goods.comment_rank}分" class="star{$goods.comment_rank_int}">&nbsp;</span></big></a></p> 市场价：<small>￥{$goods.market_price}</small>				</li>
+				<li class="pri1"><p><a href="{$goods.url}#comment" title="查看评论"><big class="xstars"><span style="width:60px;" title="{$goods.comment_rank}分" class="star{$goods.comment_rank_int}">&nbsp;</span></big></a></p>			</li>
 				<li class="pri2"><em><a href="{$goods.url}#comment" title="查看评论">(已有{$goods.comment_count}人评论)</a></em>
-                
-                
-            <!--{if $goods.promote_price neq "" } -->
-        活动价：<span>￥</span><strong>{$goods.promote_price}</strong>
-            <!--{else}-->
-        本店价：<span>￥</span><strong>
-                {$goods.shop_price}
-        </strong>
-            <!--{/if}-->
+
+                本店价：请询价
                 </li>
 			</ul>
 <!-- {/if} -->

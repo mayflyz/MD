@@ -200,8 +200,7 @@ $GLOBALS['smarty']->assign('goods_info', goods_info2($GLOBALS['smarty']->_var['g
 				<ul>
 				<li class="img"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.thumb}" width="220" height="220" align="absmiddle" /></a></li>
 				<li class="txt"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a></li>
-				<li class="pri1"> 市场价：<small>￥{$goods.market_price}</small>				</li>
-				<li class="pri2">本店价：<span>￥</span><strong>{$goods.shop_price}</strong></li>
+				<li>本店价：请询价</li>
 				<li class="buy"><a href="javascript:addToCart({$goods.goods_id})" class="la">放入购物车</a></li>
 			</ul>
         <!-- {/foreach} -->   

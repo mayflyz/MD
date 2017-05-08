@@ -52,14 +52,9 @@ if ($this->_foreach['best_goods']['total'] > 0):
         $this->_foreach['best_goods']['iteration']++;
 ?>
 <?php if ($this->_foreach['best_goods']['iteration'] <= 7): ?>
-        <li class="t<?php echo $this->_foreach['best_goods']['iteration']; ?>"><a href="<?php echo $this->_var['goods']['url']; ?>" target="_blank"><img src="<?php if ($this->_var['goods']['thumb2'] != ''): ?><?php echo $this->_var['goods']['thumb2']; ?><?php else: ?><?php echo $this->_var['goods']['thumb']; ?><?php endif; ?>"  alt="<?php echo htmlspecialchars($this->_var['goods']['name']); ?>" title="<?php echo htmlspecialchars($this->_var['goods']['name']); ?>"/></a><p class="tit protit_box"><a href="<?php echo $this->_var['goods']['url']; ?>" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);"><?php echo $this->_var['goods']['short_name']; ?></a></p><p class="pri protit_box">
-        <strong>
-                <?php if ($this->_var['goods']['promote_price'] != ""): ?>
-                <?php echo $this->_var['goods']['promote_price']; ?>
-                <?php else: ?>
-                <?php echo $this->_var['goods']['shop_price']; ?>
-                <?php endif; ?> 
-         </strong><small><?php echo $this->_var['goods']['market_price']; ?></small></p></li>
+        <li class="t<?php echo $this->_foreach['best_goods']['iteration']; ?>"><a href="<?php echo $this->_var['goods']['url']; ?>" target="_blank"><img src="<?php if ($this->_var['goods']['thumb2'] != ''): ?><?php echo $this->_var['goods']['thumb2']; ?><?php else: ?><?php echo $this->_var['goods']['thumb']; ?><?php endif; ?>"  alt="<?php echo htmlspecialchars($this->_var['goods']['name']); ?>" title="<?php echo htmlspecialchars($this->_var['goods']['name']); ?>"/></a><p class="tit protit_box"><a href="<?php echo $this->_var['goods']['url']; ?>" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);"><?php echo $this->_var['goods']['short_name']; ?></a></p><p>
+               请询价
+            </p></li>
 <?php endif; ?>
 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
   

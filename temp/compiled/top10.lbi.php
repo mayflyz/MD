@@ -13,13 +13,7 @@ if ($this->_foreach['top_goods']['total'] > 0):
 			<li class="img"><a href="<?php echo $this->_var['goods']['url']; ?>"><img alt="<?php echo $this->_var['goods']['goods_name']; ?>" src="<?php echo $this->_var['goods']['thumb']; ?>" /></a></li>
 			<li class="txt">
 				<p class="til"><a href="<?php echo $this->_var['goods']['url']; ?>"><?php echo $this->_var['goods']['short_name']; ?></a></p>
-				<p>市场价：<small>￥<?php echo $this->_var['goods']['market_price']; ?></small></p>
-				<p class="pri">本店价：￥
-                <?php if ($this->_var['goods']['promote_price'] != ""): ?>
-                <?php echo $this->_var['goods']['promote_price']; ?>
-                <?php else: ?>
-                <?php echo $this->_var['goods']['price']; ?>
-                <?php endif; ?>  
+				<p>本店价：请询价
                 </p>
 			</li>
 			<div class="clear"></div>

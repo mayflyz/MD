@@ -116,7 +116,7 @@ function insert_goods_history()
 					
 $str.='<ul><li class="img"><a href="'.$goods['url'].'" target="_blank" title="'.$goods['goods_name'].'"><img src="'.$goods['goods_thumb'].'" /></a></li>'.
    '<li class="txt"><p class="til"><a href="'.$goods['url'].'" target="_blank" title="'.$goods['goods_name'].'">'.$goods['goods_name'].'</a></p>'.
-   '<p>市场价：<small>￥'.$goods['market_price'].'</small></p><p class="pri">本店价：￥'.$goods['shop_price'].'</p></li><div class="clear"></div></ul>';					
+   '<p><p>本店价：请询价</p></li><div class="clear"></div></ul>';
 
         }
 		

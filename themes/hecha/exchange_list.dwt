@@ -56,13 +56,8 @@ $GLOBALS['smarty']->assign('hot_goods', get_exchange_recommend_goods2('hot'));
                             <li class="img"><a href="{$goods.url}"><img src="{$goods.thumb}" /></a></li>
                             <li class="txt">
                                     <p class="til"><a href="{$goods.url}" title="{$goods.name}">{$goods.name}</a></p>
-                                    <p>市场价：<small>￥{$goods.market_price}</small></p>
-                                    <p class="pri">
-                <!-- {if $goods.promote_price neq ""} -->
-                本店价：￥{$goods.promote_price}
-                <!-- {else}-->
-                本店价：￥{$goods.shop_price}
-                <!--{/if}-->  
+                                    <p>
+                                        本店价：请询价
                                     </p>
                             </li>
                             
@@ -158,11 +153,7 @@ $GLOBALS['smarty']->assign('hot_goods', get_exchange_recommend_goods2('hot'));
 				<li class="img"><a href="{$goods.gurl}" target="_blank" title="{$goods.name}"><img src="{$goods.goods_thumb}" alt="{$goods.name}" /></a></li>
 				<li class="txt"><a href="{$goods.gurl}" target="_blank" title="{$goods.name}">{$goods.name}<span style="color:red; font-weight:900;"></span></a></li>
 				<li class="pri2"><em>
-                <!-- {if $goods.promote_price neq ""} -->
-                本店价：￥{$goods.promote_price}
-                <!-- {else}-->
-                本店价：￥{$goods.shop_price}
-                <!--{/if}--> 
+                本店价：请询价
                 </em><strong>{$goods.exchange_integral}积分</strong></li>
                                 <li class="buy"><a href="exchange.php?act=buy&goods_id={$goods.goods_id}" class="la">我要兑换</a><a href="{$goods.gurl}" class="lb">我要购买</a></li>
 			</ul>

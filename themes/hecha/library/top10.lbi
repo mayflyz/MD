@@ -10,13 +10,7 @@ $GLOBALS['smarty']->assign('get_hotsell_goods', get_hotsell_goods($cat_id));
 			<li class="img"><a href="{$goods.url}"><img alt="{$goods.goods_name}" src="{$goods.thumb}" /></a></li>
 			<li class="txt">
 				<p class="til"><a href="{$goods.url}">{$goods.short_name}</a></p>
-				<p>市场价：<small>￥{$goods.market_price}</small></p>
-				<p class="pri">本店价：￥
-                <!-- {if $goods.promote_price neq ""} -->
-                {$goods.promote_price}
-                <!-- {else}-->
-                {$goods.price}
-                <!--{/if}-->  
+				<p>本店价：请询价
                 </p>
 			</li>
 			<div class="clear"></div>

@@ -47,12 +47,8 @@ $limnum=8;
 <!-- {if $smarty.foreach.best_goods.iteration<=7}-->
         <li class="t{$smarty.foreach.best_goods.iteration}"><a href="{$goods.url}" target="_blank"><img src="{if $goods.thumb2 neq ''}{$goods.thumb2}{else}{$goods.thumb}{/if}"  alt="{$goods.name|escape:html}" title="{$goods.name|escape:html}"/></a><p class="tit protit_box"><a href="{$goods.url}" target="_blank" onclick="return gourl(this.href,'?hra=pro',this.target);">{$goods.short_name}</a></p><p class="pri protit_box">
         <strong>
-                <!-- {if $goods.promote_price neq ""} -->
-                {$goods.promote_price}
-                <!-- {else}-->
-                {$goods.shop_price}
-                <!--{/if}--> 
-         </strong><small>{$goods.market_price}</small></p></li>
+               请询价
+         </strong></p></li>
 <!--{/if}-->
 <!--{/foreach}--> 
   
